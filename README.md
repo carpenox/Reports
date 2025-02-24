@@ -8,8 +8,9 @@ Custom Reports for Vicidial
 
 ```
 cd /var/www/html/vicidial/
-cd /srv/www/htdocs/
+cd /srv/www/htdocs/vicidial/
 git clone https://github.com/carpenox/Reports.git
+cp ../dbconnect_mysqli.php ../functions.php Reports
 ```
 
 
