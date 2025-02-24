@@ -9,8 +9,6 @@ Custom Reports for Vicidial
 ```
 cd /var/www/html/vicidial/
 cd /srv/www/htdocs/
-mkdir Reports
-cd Reports
 git clone https://github.com/carpenox/Reports.git
 ```
 
