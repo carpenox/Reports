@@ -24,3 +24,10 @@ cp dbconnect_mysqli.php functions.php Reports
 ### sales.php - Will show the sales and what list they are from for a chosen date range
 
 ### humans.php - this report with give you the Outbound CID,	Total Calls,	Human Answered Calls, and	Human Answer Rate (%) for your DID's on a chosen date range
+
+### users-upload.php - a tool to upload a csv file in the format like the example file users.csv which will create all the users in the vicidial database, must make sure the user_id is not being used already in the system. Even if the user may be user "1000" the user_id may be "3".
+
+
+![image](https://github.com/user-attachments/assets/427d8cc8-aa7f-4e44-886e-5809cec9230b)
+
+
