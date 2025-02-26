@@ -27,7 +27,9 @@ cp dbconnect_mysqli.php functions.php Reports
 
 ### users-upload.php - a tool to upload a csv file in the format like the example file users.csv which will create all the users in the vicidial database, must make sure the user_id is not being used already in the system. Even if the user may be user "1000" the user_id may be "3".
 
+![Screenshot 2025-02-25 225533](https://github.com/user-attachments/assets/ef48c110-b4dc-4f56-a813-229e625ba1a2)
 
 ![image](https://github.com/user-attachments/assets/427d8cc8-aa7f-4e44-886e-5809cec9230b)
+
 
 
