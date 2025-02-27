@@ -25,7 +25,7 @@ cp dbconnect_mysqli.php functions.php Reports
 
 ### humans.php - this report with give you the Outbound CID,	Total Calls,	Human Answered Calls, and	Human Answer Rate (%) for your DID's on a chosen date range
 
-### users-upload.php - a tool to upload a csv file in the format like the example file users.csv which will create all the users in the vicidial database, must make sure the user_id is not being used already in the system. Even if the user may be user "1000" the user_id may be "3".
+### users-upload.php - a tool to upload a csv file in the format like the example file users.csv which will create all the users, phone and phonealias in the vicidial database, must make sure the user_id is not being used already in the system. Even if the user may be user "1000" the user_id may be "3".
 
 ![Screenshot 2025-02-25 225533](https://github.com/user-attachments/assets/ef48c110-b4dc-4f56-a813-229e625ba1a2)
 
