@@ -49,5 +49,10 @@ cp dbconnect_mysqli.php functions.php Reports
 
 ![image](https://github.com/user-attachments/assets/2770cf52-1d52-497c-9f90-d5b4dfd43030)
 
+### record-search.html  - A tool to search records/leads by user and status (backend parts include fetch_users.php, fetch_statuses.php and generate_report.php
+
+![image](https://github.com/user-attachments/assets/2d241f1e-7539-4097-b12c-eacf21c55f8b)
+
+
 
 
