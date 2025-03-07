@@ -15,6 +15,9 @@ cp dbconnect_mysqli.php functions.php Reports
 
 ## You will then be able to find the reports at https://yourdomain/vicidial/Reports/
 
+![image](https://github.com/user-attachments/assets/0cfd310d-269e-4c87-b5be-f76ca99a3c6f)
+
+
 ### did_report.php - Custom report to get a call count per area code and how many DID's you should have per area code based on a 6 day work week with 50 calls or less on each per day(new spam risk math for 2025) - also able to export that data to CSV file
 
 ![Screenshot 2025-01-11 162201](https://github.com/user-attachments/assets/59b5d507-9e3d-427d-8b84-b04dc0d6e198)
