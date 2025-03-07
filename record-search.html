@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Record Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Record Search</h2>
+        <form id="reportForm">
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" required>
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" required>
+            </div>
+            <div class="form-group">
+                <label for="user">Select User:</label>
+                <select id="user" name="user" required>
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Select Status:</label>
+                <select id="status" name="status" required>
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+            <button type="submit">Generate Report</button>
+        </form>
+        <div id="reportResults"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('fetch_users.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const usersSelect = document.getElementById('user');
+                    data.forEach(user => {
+                        const option = document.createElement('option');
+                        option.value = user.user;
+                        option.textContent = user.user;
+                        usersSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching users:', error));
+
+            fetch('fetch_statuses.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const statusesSelect = document.getElementById('status');
+                    data.forEach(status => {
+                        const option = document.createElement('option');
+                        option.value = status.status;
+                        option.textContent = status.status;
+                        statusesSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching statuses:', error));
+
+            document.getElementById('reportForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+
+                console.log('Form data:', Object.fromEntries(formData.entries())); // Debugging form data
+
+                fetch('generate_report.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Report data:', data); // Debugging response data
+                    const reportResults = document.getElementById('reportResults');
+                    if (data.error) {
+                        reportResults.innerHTML = '<pre>Error: ' + data.error + '</pre>';
+                    } else if (data.length === 0) {
+                        reportResults.innerHTML = '<pre>No results found for the selected criteria.</pre>';
+                    } else {
+                        let table = '<table>';
+                        table += '<tr><th>Lead ID</th><th>Status</th><th>User</th><th>List ID</th><th>Phone Number</th><th>First Name</th><th>Last Name</th><th>Address1</th><th>Address2</th><th>City</th><th>State</th><th>Postal Code</th><th>Email</th><th>Entry Date</th></tr>';
+                        data.forEach(row => {
+                            table += `<tr>
+                                <td>${row.lead_id}</td>
+                                <td>${row.status}</td>
+                                <td>${row.user}</td>
+                                <td>${row.list_id}</td>
+                                <td>${row.phone_number}</td>
+                                <td>${row.first_name}</td>
+                                <td>${row.last_name}</td>
+                                <td>${row.address1}</td>
+                                <td>${row.address2}</td>
+                                <td>${row.city}</td>
+                                <td>${row.state}</td>
+                                <td>${row.postal_code}</td>
+                                <td>${row.email}</td>
+                                <td>${row.entry_date}</td>
+                            </tr>`;
+                        });
+                        table += '</table>';
+                        reportResults.innerHTML = table;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error generating report:', error);
+                    document.getElementById('reportResults').innerHTML = '<pre>Error generating report: ' + error.message + '</pre>';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
