@@ -11,6 +11,10 @@ cd /var/www/html/vicidial/
 cd /srv/www/htdocs/vicidial/
 git clone https://github.com/carpenox/Reports.git
 cp dbconnect_mysqli.php functions.php Reports
+chmod -R 744 /var/www/html/vicidial/Reports
+chmod -R 744 /srv/www/htdocs/vicidial/Reports
+chown -R apache:apache /var/www/html/vicidial/Reports
+chown -R wwwrun:www /var/www/html/vicidial/Reports
 ```
 
 ## You will then be able to find the reports at https://yourdomain/vicidial/Reports/
